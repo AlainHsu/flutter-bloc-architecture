@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:counter/counter_bloc.dart';
+import 'package:counter/counter/bloc/counter_bloc.dart';
 import 'package:test/test.dart';
 
 void main() {
