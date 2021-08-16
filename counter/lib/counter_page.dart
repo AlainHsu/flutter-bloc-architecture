@@ -35,7 +35,7 @@ class CounterPage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
-              child: Icon(Icons.add),
+              child: Icon(Icons.remove),
               onPressed: () {
                 context.read<CounterBloc>().add(CounterEvent.decrement);
               },
