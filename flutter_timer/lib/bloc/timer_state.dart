@@ -33,7 +33,7 @@ class TimerRunInProgress extends TimerState {
 }
 
 class TimerRunComplete extends TimerState {
-  TimerRunComplete(int duration) : super(duration);
+  TimerRunComplete() : super(0);
 
   @override
   String toString() => 'TimerRunComplete { duration: $duration }';
