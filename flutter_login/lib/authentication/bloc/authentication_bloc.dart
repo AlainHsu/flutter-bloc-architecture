@@ -31,6 +31,8 @@ class AuthenticationBloc
   ) async* {
     if (event is AuthenticationStatusChanged) {
       yield await _mapAuthenticationStatusChangedToState(event);
+    } else if (event is AuthenticationLogoutRequested) {
+      _authenticationRepository.logout();
     }
   }
 
