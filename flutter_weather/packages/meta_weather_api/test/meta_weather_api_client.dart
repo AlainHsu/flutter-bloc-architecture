@@ -67,6 +67,33 @@ void main() {
             () async => metaWeatherApiClient.locationSearch(query),
             throwsA(isA<LocationNotFoundFailure>()));
       });
+
+      test('returns Location on valid response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn(
+          '''[{
+            "title": "mock-title",
+            "location_type": "City",
+            "latt_long": "-34.75,83.28",
+            "woeid": 42
+          }]''',
+        );
+        when(() => httpClient.get(any())).thenAnswer((_) async => response);
+        final actual = await metaWeatherApiClient.locationSearch(query);
+        expect(
+            actual,
+            isA<Location>()
+                .having((p0) => p0.title, 'title', 'mock-title')
+                .having((p0) => p0.locationType, 'type', LocationType.city)
+                .having(
+                    (p0) => p0.latLng,
+                    'latLng',
+                    isA<LatLng>()
+                        .having((p0) => p0.latitude, 'latitude', -34.75)
+                        .having((p0) => p0.longitude, 'longitude', 83.28))
+                .having((p0) => p0.woeid, 'woeid', 42));
+      });
     });
   });
 }
