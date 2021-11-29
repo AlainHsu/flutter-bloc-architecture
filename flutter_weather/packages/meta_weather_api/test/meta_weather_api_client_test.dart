@@ -14,7 +14,7 @@ void main() {
     late http.Client httpClient;
     late MetaWeatherApiClient metaWeatherApiClient;
 
-    setUpAll(() => registerFallbackValue<Uri>(FakeUri()));
+    setUpAll(() => registerFallbackValue(FakeUri()));
 
     setUp(() {
       httpClient = MockHttpClient();
