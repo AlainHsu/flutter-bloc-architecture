@@ -19,15 +19,15 @@ class MetaWeatherApiClient {
   MetaWeatherApiClient({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();
 
-  static const _baseUrl = 'www.metaweather.com';
+  static const _baseUrl = 'geocoding-api.open-meteo.com';
   final http.Client _httpClient;
 
   /// Finds a [Location] '/api/location/search/?query=(query)'.
   Future<Location> locationSearch(String query) async {
     final locationRequest = Uri.https(
       _baseUrl,
-      '/api/location/search',
-      <String, String>{'query': query},
+      '/v1/search',
+      <String, String>{'name': query},
     );
 
     final locationResponse = await _httpClient.get(locationRequest);
